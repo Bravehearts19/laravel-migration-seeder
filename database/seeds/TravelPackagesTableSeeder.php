@@ -1,8 +1,8 @@
 <?php
 
+use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\TravelPackage;
-use Illuminate\Database\Seeder;
 
 
 
@@ -15,7 +15,7 @@ class TravelPackagesTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-       /*  $travelPackages = [
+        $travelPackages = [
             [
                 "destination_places" => "Barcellona",
                 "start_date" => "2022-05-04",
@@ -55,20 +55,21 @@ class TravelPackagesTableSeeder extends Seeder
             $newTravelPackage -> informations = $travelPackage["informations"];
             $newTravelPackage -> extras = $travelPackage["extras"];
             $newTravelPackage -> save();
-        }; */
+        };
 
         for ($i=0; $i < 10; $i++) { 
             $newTravelPackage = new TravelPackage();
-            $newTravelPackage -> destination_places = $faker -> destination_places;
-            $newTravelPackage -> start_date = $faker -> start_date;
-            $newTravelPackage -> end_date = $faker -> end_date;
-            $newTravelPackage -> price = $faker -> price;
-            $newTravelPackage -> flight = $faker -> flight;
-            $newTravelPackage -> flight_start_date = $faker -> flight_start_date;
-            $newTravelPackage -> flight_end_date = $faker -> flight_end_date;
-            $newTravelPackage -> board_description = $faker -> board_description;
-            $newTravelPackage -> informations = $faker -> informations;
-            $newTravelPackage -> extras = $faker -> extras;
+            $newTravelPackage -> destination_places = $faker -> text(200);
+            $newTravelPackage -> start_date = $faker -> date();
+            $newTravelPackage -> end_date = $faker -> date();
+            $newTravelPackage -> price = $faker -> randomFloat(2, 0, 99000);
+            $newTravelPackage -> flight = $faker -> boolean();
+            $newTravelPackage -> flight_start_date = $faker -> dateTime();
+            $newTravelPackage -> flight_end_date = $faker -> dateTime();
+            $newTravelPackage -> board_description = $faker -> text(50);
+            $newTravelPackage -> informations = $faker -> text(500);
+            $newTravelPackage -> extras = $faker -> text(500);
+            
             $newTravelPackage -> save(); 
         }
     }
